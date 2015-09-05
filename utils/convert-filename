@@ -1,0 +1,49 @@
+#!/bin/bash
+
+# Usage: convert-filename
+#   Replaces all non-standard characters in filename in the current directory to
+#   '-' for the filetypes listed below
+
+
+filetypes="*.doc *.txt *.pdf *.jpg *.jpeg *.mp3 *.rm *.wma *.ogg *.gif *.bmp *.tif *.mp4 *.3gp *.mov"
+
+#echo "Converting filetypes ${filetypes} ...."
+#echo "([NOTE]: Copy of failed conversion/s can be found in /tmp/)"
+#echo
+
+
+# Very bash specific
+# In this context: If no file with the specified extension exist ignore the pattern
+shopt -s nullglob
+
+# Ignore case while expanding patterns
+shopt -s nocaseglob
+
+for file in ${filetypes}
+do
+
+  from=${file}
+
+  # http://stackoverflow.com/questions/11287564/getting-sed-error-illegal-byte-sequence-in-bash
+  lang=${LANG}
+  lc_ctype=${LC_CTYPE}
+  export LANG=C
+  export LC_CTYPE=C
+
+  # replace all spaces, underscores, brackets, pipes, commas, question marks,
+  # and exclamations with '-'; remove leading, trailing, and duplicate '-'
+  # convert everything to lower case
+  to=`echo "${file}"| tr '[:upper:]' '[:lower:]' | tr -c '[:alnum:].' '-' | tr -s '.-' | sed -e 's/^-//' | sed -e 's/-$//' `
+
+  export LANG=${lang}
+  export LC_CTYPE=${lc_ctype}
+
+  if [ "$from" != "${to}" ]
+  then
+    echo "[INFO]: Converting" $from "to" $to
+    # To make this work for a case-insensitive filesystem  (e.g., darwin)
+    mv -i "${from}" "/tmp/${to}" &&  mv -i "/tmp/${to}" "${to}"
+  fi
+done
+
+
