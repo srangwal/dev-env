@@ -17,21 +17,18 @@
 #      # Set default less options
 #      export LESS=" -gFJQRsXW "
 
+[[ -z $PLATFORM ]] && PLATFORM=$(python -mplatform | tr '[:upper:]' '[:lower:]'| egrep -o 'ubuntu|redhat|darwin')
 
-[[ $(python -mplatform | tr '[:upper:]' '[:lower:]') =~ "darwin" ]] && platform="mac"
-[[ $(python -mplatform | tr '[:upper:]' '[:lower:]') =~ "redhat" ]] && platform="redhat"
-[[ $(python -mplatform | tr '[:upper:]' '[:lower:]') =~ "ubuntu" ]] && platform="ubuntu"
-
-case "${platform}" in
-  *mac*)
+case "${PLATFORM}" in
+  darwin)
     LESSDIR=$(brew --prefix)/bin
     SHLESSDIR=$(brew --prefix)/bin
     ;;
-  *ubuntu*)
+  ubuntu)
     LESSDIR=/usr/bin
     SHLESSDIR=/usr/share/source-highlight
     ;;
-  *redhat*)
+  redhat)
     LESSDIR=/usr/bin
     SHLESSDIR=/usr/bin
     ;;
