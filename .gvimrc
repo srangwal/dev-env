@@ -148,6 +148,7 @@
   elseif g:os == "Darwin-gui"
     set guifont=Monaco:h15
     set guifont=Consolas:h15
+    set guifont=Inconsolata:h15
 
   endif
 
