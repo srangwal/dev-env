@@ -3,17 +3,6 @@
 " Description:
 " Last Modified: September 15, 2015
 
-"TODOs:
-" - All map (and abbr) should have a <unique>, i.e., map <unique> DQ ..
-"
-" -  Write a function to do this
-"  21 if !hasmapto('<Plug>TypecorrAdd')
-"  22   map <unique> <Leader>a  <Plug>TypecorrAdd
-"  23 endif
-" This checks if a mapping to "<Plug>TypecorrAdd" already exists, and only
-" defines the mapping from "<Leader>a" if it doesn't.  The user then has a
-" chance of putting this in his vimrc file: >
-
 
 " [NOTE]:
 "   For vim-outliner
@@ -358,10 +347,16 @@
   source ~/.vim/my-rc/short-hands.vim
 
 
-  ""----- CLIPBOARD SETTINGS ------
-  if g:os =~ 'Linux'
+  "----- CLIPBOARD SETTINGS ------
+  " On Mac OS X and Windows, the * and + registers both point to the system clipboard so unnamed and unnamedplus have
+  " the same effect: the unnamed register is synchronized with the system clipboard.
+  "
+  " On Linux, you have essentially two clipboards: one is pretty much the same as in the other OSes (CtrlC and CtrlV in
+  " other programs, mapped to register + in Vim), the other is the "selection" clipboard (mapped to register * in Vim).
+  "
+  if g:os =~ 'Linux' && has('unnamedplus')
     set clipboard^=unnamedplus
-  elseif g:os =~ 'Darwin'
+  else
     set clipboard^=unnamed
   endif
 
@@ -470,5 +465,18 @@
 
   "set verbose=2
   "set verbosefile=~/.vim/verbose-file
+
+
+"TODOs:
+" - All map (and abbr) should have a <unique>, i.e., map <unique> DQ ..
+"
+" -  Write a function to do this
+"  21 if !hasmapto('<Plug>TypecorrAdd')
+"  22   map <unique> <Leader>a  <Plug>TypecorrAdd
+"  23 endif
+" This checks if a mapping to "<Plug>TypecorrAdd" already exists, and only
+" defines the mapping from "<Leader>a" if it doesn't.  The user then has a
+" chance of putting this in his vimrc file: >
+
 
 " vim: set ts=2 sw=2 sts=2 tw=120:
