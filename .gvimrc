@@ -5,11 +5,14 @@
 
 
 " [NOTE]:
-"   For vim-outliner
-"     1. sudo apt-get install vim-vimoutliner
-"     2. vim-addons install vimoutliner
-"   Enable few other addons
-"     $> vim-addons install matchit
+"   Ubuntu
+"     For vim-outliner
+"       1. sudo apt-get install vim-vimoutliner
+"       2. vim-addons install vimoutliner
+"     Enable few other addons
+"       $> vim-addons install matchit
+"   Redhat and OS-X
+"     Install vimoutliner manually from github
 
 
 "----------VUNDLE------------
@@ -41,7 +44,6 @@
   Plugin 'luochen1990/rainbow'
     let g:rainbow_active = 1 "0 if you want to enable it later via :RainbowToggle
 
-  Plugin 'vimoutliner-colorscheme-fix'
   Plugin 'flazz/vim-colorschemes'
 
 
@@ -110,12 +112,12 @@
     if !has("gui_running")
       return
     endif
-    if &filetype != "vo_base"
+    if &filetype != "votl" && &filetype != "vo_base"
       set background=dark
       colorscheme solarized
     else
       " TODO: Need to find a better darker colorscheme for vim-outliner files
-      "set background=dark
+      "set background=light
       "colorscheme solarized
     endif
   endfunction
