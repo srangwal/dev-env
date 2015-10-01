@@ -1,15 +1,5 @@
 "Short hand
 
-"Misc items/ email composing
-abbr  \a 1401 Red Hawk Cir APT J-306<CR>Fremont CA 94538<CR>
-iabbr sr Sumit Rangwala
-iabbr srs Sumit Rangwala's
-iabbr ma Maria
-iabbr \p 213 245 1299
-iabbr tk Thanks,
-iabbr ts Thanks,Sumit
-
-
 " Note taking abbr
 iabbr td TODO:
 iabbr ak [ASK]:
