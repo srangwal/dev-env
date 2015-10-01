@@ -112,13 +112,11 @@
     if !has("gui_running")
       return
     endif
-    if &filetype != "votl" && &filetype != "vo_base"
+    " Ubuntu default vimoutliner does not work well with dark background. Set colorscheme only if file is not a
+    " vimoutliner file
+    if &filetype != "vo_base"
       set background=dark
       colorscheme solarized
-    else
-      " TODO: Need to find a better darker colorscheme for vim-outliner files
-      "set background=light
-      "colorscheme solarized
     endif
   endfunction
   au BufEnter * call SetColorScheme()   " It is not possible to have different color scheme for different windows if multiple windows are open.
