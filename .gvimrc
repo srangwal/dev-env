@@ -36,7 +36,8 @@
   Plugin 'tpope/vim-fugitive'
   Plugin 'tpope/vim-surround'
 
-  Plugin 'ekalinin/Dockerfile.vim'
+  "Plugin 'ekalinin/Dockerfile.vim'
+  Plugin 'docker/docker' , {'rtp': '/contrib/syntax/vim/'}
   Plugin 'motus/pig.vim'
   Plugin 'uarun/vim-protobuf'
   Plugin 'davidzchen/jproperties.vim'
@@ -45,7 +46,6 @@
     let g:rainbow_active = 1 "0 if you want to enable it later via :RainbowToggle
 
   Plugin 'flazz/vim-colorschemes'
-
 
   " All Plugins must be added before vundle#end()
   call vundle#end()            " required
@@ -150,7 +150,7 @@
 
 
 "--------------FORMATTING-------------
-  set bs=2                " backspace 0, 1 or 2; what <BS> can do in Insert mode
+  set bs=indent,eol,start " backspace 0, 1 or 2; what <BS> can do in Insert mode
   set shiftwidth=2        " shiftwidth  number of spaces used for each step of (auto)indent (local to buffer)
   set tabstop=2           " tabstop - how many columns should the cursor move for one tab
   set softtabstop=2       " This makes the backspace key treat the four spaces like a tab (so one backspace goes back a full 2 spaces).
@@ -217,6 +217,7 @@
   set wildmode=list,full          " wildmode  specifies how command line completion works
   set wildignore=*.o,*.obj,*.exe,*.a,*.so,*.aux,*.swp,*.zip,*/tmp*/    " wildignore  list of patterns to ignore files for file name completion
 
+  set autoread                    " Set to auto read when a file is changed from the outside
 
 "--------MODELINES--------
   " Remember there is a security risk with modelines
@@ -228,7 +229,6 @@
   set path=.,,**      " search for file in the directory containing current file (.), then the current
                       " directory (empty text between two commas), then each directory under the current directory
                       " ('**').
-
 
 "----- GUI SPECIFIC SETTINGS -------------
   if has('gui_running')
@@ -447,12 +447,12 @@
   autocmd BufWritePre * :%s/\s\+$//e
 
   "---- Syntax highlighting for gradle ----
-  au BufNewFile,BufRead *.gradle setf groovy
+  au BufNewFile,BufRead *.gradle  setf groovy
 
   "-------Gnuplot files-------
-  au BufNewFile,BufRead *.gp      set noautoindent textwidth=220
+  au BufNewFile,BufRead *.gp  set noautoindent textwidth=220
 
-  " [NOTE]:  Filetype specific settings should be added to respective file in .vim/after/ftplugin/
+  " [NOTE]:  Filetype specific settings should be added to respective files in .vim/ftplugin/
 
 "------------------AUTOCOMMANDS END---------------------
 

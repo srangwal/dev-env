@@ -4,14 +4,14 @@ endif
 let b:did_ftplugin = 1
 
 setlocal cindent
-" For multi line statement align with the starting (. See :h cinoptions-values
+" For multi line statement align with the starting (See :h cinoptions-values)
 setlocal cinoptions+=(0
 setlocal cinoptions+=}0
 " Search for comment start upto n lines
 setlocal cinoptions+=*120
 setlocal tabstop=4 softtabstop=4 shiftwidth=4 textwidth=80
 setlocal foldmethod=syntax foldlevel=8
-setlocal noexpandtab nospell
+set noexpandtab nospell
 
 let java_mark_braces_in_parens_as_errors=1
 
