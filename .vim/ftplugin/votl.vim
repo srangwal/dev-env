@@ -10,6 +10,6 @@ let b:extralines = []
 " http://stackoverflow.com/questions/23496243/autocommand-for-new-file-of-specific-filetype
 if !filereadable(expand('%'))
   " BufNewFile
-	call MyLibs#AddFooter(b:extralines,b:comment_start,b:comment_end)
+  call MyLibs#AddFooter(b:extralines,b:comment_start,b:comment_end)
 endif
 nnoremap <unique> ml :call MyLibs#AddFooter(b:extralines,b:comment_start,b:comment_end)<CR>
