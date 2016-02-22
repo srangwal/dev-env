@@ -51,6 +51,9 @@ for source in "$@"; do
     *.gradle)
       highlight --syntax groovy -O xterm256 "$source"
       ;;
+    *.json)
+      underscore print --color -i "$source"
+      ;;
     *)
       ${SHLESSDIR}/src-hilite-lesspipe.sh "$source" ;;
   esac
